@@ -143,7 +143,7 @@ services:
     - WHATSAPP_API_PORT=3000
     - WHATSAPP_API_KEY=${WAHA_API_KEY}
     - WHATSAPP_HOOK_URL=https://ezhadcvilceruaaxibyx.supabase.co/functions/v1/msg-inbound-message-ingest?source=waha
-    - WHATSAPP_HOOK_EVENTS=message
+    - WHATSAPP_HOOK_EVENTS=message,session.status
     - NODE_OPTIONS=--max-old-space-size=512
     deploy:
       resources:
