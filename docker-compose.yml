@@ -139,20 +139,23 @@ services:
     - '3000'
     volumes:
     - ${DATA_FOLDER}/waha_data:/app/.sessions
+    shm_size: 256m
     environment:
     - WHATSAPP_API_PORT=3000
     - WHATSAPP_API_KEY=${WAHA_API_KEY}
     - WHATSAPP_HOOK_URL=https://ezhadcvilceruaaxibyx.supabase.co/functions/v1/msg-inbound-message-ingest?source=waha
     - WHATSAPP_HOOK_EVENTS=message,session.status
     - NODE_OPTIONS=--max-old-space-size=512
+    - WAHA_DISABLE_PUPPETEER_SANDBOX=false
+    - PUPPETEER_ARGS=--disable-dev-shm-usage,--no-first-run,--no-zygote
     deploy:
       resources:
         limits:
           cpus: '1'
-          memory: 512M
+          memory: 1G
         reservations:
           cpus: '0.5'
-          memory: 256M
+          memory: 512M
     healthcheck:
       test:
       - CMD
